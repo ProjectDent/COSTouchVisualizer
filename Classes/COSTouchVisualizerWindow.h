@@ -22,5 +22,6 @@
 @property (nonatomic, assign) NSTimeInterval rippleFadeDuration;
 @property (nonatomic, strong) UIColor *rippleStrokeColor;
 @property (nonatomic, strong) UIColor *rippleFillColor;
+@property (nonatomic) BOOL rippleEnabled;
 
 @end

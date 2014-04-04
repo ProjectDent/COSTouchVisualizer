@@ -10,9 +10,9 @@
 // Turn this on to debug touches during development.
 
 #ifdef TARGET_IPHONE_SIMULATOR
-#define DEBUG_FINGERTIP_WINDOW 0
+#define DEBUG_FINGERTIP_WINDOW 1
 #else
-#define DEBUG_FINGERTIP_WINDOW 0
+#define DEBUG_FINGERTIP_WINDOW 1
 #endif
 
 @interface COSTouchSpotView : UIImageView
@@ -240,8 +240,10 @@
           if (touchView == nil && touch.phase != UITouchPhaseStationary) {
             touchView = [[COSTouchSpotView alloc] initWithImage:self.touchImage];
             [self.overlayWindow.rootViewController.view addSubview:touchView];
-
-            self.timer = [NSTimer scheduledTimerWithTimeInterval:0.6 target:self selector:@selector(performMorph:) userInfo:touchView repeats:YES];
+              
+              if (self.rippleEnabled) {
+                  self.timer = [NSTimer scheduledTimerWithTimeInterval:0.6 target:self selector:@selector(performMorph:) userInfo:touchView repeats:YES];
+              }
           }
           
           if (![touchView isFadingOut]) {
